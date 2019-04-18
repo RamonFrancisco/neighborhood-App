@@ -1,28 +1,33 @@
-import React, { Component } from 'react';
+import React, {  useState, useEffect, Fragment } from 'react';
+import * as MapsAPI from './utils/foursSquareAPI';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import GoogleMaps from './components/googleMaps';
+import Header from './components/Header';
 
+const App = () => {
+
+	const [allLocation, setAllLocation] = useState([]);
+
+	useEffect(() => {
+		MapsAPI.search('coffee')
+		.then(data => setAllLocation(data.venues))
+	}, [])
+
+	return (
+		<Fragment>
+			<Header title="Vilinha"></Header>
+			<GoogleMaps 
+				isMarkerShown
+				location={allLocation}
+				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3YLiVZd1yNE6wtL0s526RC-tMn5geMrY&v=3&libraries=geometry,drawing,places"
+				loadingElement={<div style={{ height: `100%` }} />}
+				containerElement={<div style={{ height: `100vh` }} />}
+				mapElement={<div style={{ height: `100%` }} />}
+			/>
+		</Fragment>
+	);
+}
+	
 export default App;
