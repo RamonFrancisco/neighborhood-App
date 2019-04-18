@@ -1,14 +1,22 @@
 import React, {  useState, useEffect, Fragment } from 'react';
 import * as MapsAPI from './utils/foursSquareAPI';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 import GoogleMaps from './components/googleMaps';
-import Header from './components/Header';
+import Header from './components/header/Header';
 
 const App = () => {
 
+
 	const [allLocation, setAllLocation] = useState([]);
+	const [location, setLocation] = useState({});
+	const [photo, setPhoto ] = useState('');
+
+	const sourcePhoto = (id) => {
+		MapsAPI.getPhoto(id)
+		.then(data => setPhoto(data))
+	}
 
 	useEffect(() => {
 		MapsAPI.search('coffee')
@@ -20,10 +28,13 @@ const App = () => {
 			<Header title="Vilinha"></Header>
 			<GoogleMaps 
 				isMarkerShown
-				location={allLocation}
-				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3YLiVZd1yNE6wtL0s526RC-tMn5geMrY&v=3&libraries=geometry,drawing,places"
+				location={location}
+				allLocation={allLocation}
+				sourcePhoto={sourcePhoto}
+				photo={photo}
+				googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3YLiVZd1yNE6wtL0s526RC-tMn5geMrY&v=3"
 				loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `100vh` }} />}
+				containerElement={<div style={{ height: `90vh` }} />}
 				mapElement={<div style={{ height: `100%` }} />}
 			/>
 		</Fragment>
