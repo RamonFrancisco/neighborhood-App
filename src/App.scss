@@ -5,3 +5,53 @@
 
 //COMPONENTS
 @import './components/header/header';
+@import './components/googleMaps/googleMaps';
+@import './components/listCategories/list-categories';
+
+
+.main {
+	display: flex;
+	
+	&.loading {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		z-index: 9999;
+		
+		
+		&::before {
+			content: '';
+			position: absolute;
+			top: calc(50% - 120px);
+			left: calc(50% - 120px);
+			border: 5px solid #f3f3f3; /* Light grey */
+			border-top: 5px solid $color-second; /* Blue */
+			border-radius: 50%;
+			width: 120px;
+			height: 120px;
+			animation: spin 2s linear infinite;
+			z-index: 9999;
+		}
+		
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba( #000000, .7);
+		
+		}
+	}
+}
+
+.content {
+	width: 80%;
+	
+}
+
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

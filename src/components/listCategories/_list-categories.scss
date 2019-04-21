@@ -1,0 +1,37 @@
+.list-categories {
+	width: 20%;
+	background-color: $color-primary;
+	
+	&__title {
+		border-bottom: 1px solid transparent;
+		padding: 15px 20px;
+		color: $color-second;
+		font-weight: lighter;
+		text-transform: uppercase;
+	}
+	
+	&__list {
+		display: flex;
+		flex-direction: column;
+		
+		&__option {
+			text-align: left;
+			background-color: transparent;
+			color: $color-second;
+			font-size: 1rem;
+			padding: 10px 20px;
+			border: 0;
+			transition: all .2s linear;
+
+			&:hover {
+				background-color: rgba($color-second, .7);
+				color: rgba($color-primary, 1) ;
+			}
+			
+			&.--click {
+				background-color: rgba($color-second, .4);
+				color: $color-second;
+			}
+		}
+	}
+}
