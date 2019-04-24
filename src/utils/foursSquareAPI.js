@@ -1,8 +1,11 @@
 const BASE_URL = 'https://api.foursquare.com/v2/venues/explore?';
-const CLIENT_ID = 'client_id=5UE2KDLDBQQ0QQWAT22RM3F0C22EJNP55V3NF3DSIKBZ3OQG';
-const CLIENT_SECRET = 'client_secret=YEBNLCAZIGNBTTL5DC0NUJHCUGW1ZOAMEP5KSZCM3X0P3IXS'
+const CLIENT_ID = `client_id=${process.env.REACT_APP_FOURSQUARE_CLIENT_ID}`;
+const CLIENT_SECRET = `client_secret=${process.env.REACT_APP_FOURSQUARE_SECRET_ID}`
 const DEFAULT_PARAMETERS = 'v=20180323'
 const NEAR = '&near=São Paulo';
+
+console.log('client-id', CLIENT_ID)
+console.log('secret-id', CLIENT_SECRET)
 
 export const getVenue = id => 
 fetch(`${BASE_URL}categoryId=${id}&${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)

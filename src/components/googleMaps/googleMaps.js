@@ -16,7 +16,7 @@ const GoogleMaps = withScriptjs(withGoogleMap((props) => {
 
 		<GoogleMap
 			defaultZoom={11}
-			defaultCenter={{ lat: -23.533773, lng: -46.625290 }}>
+			defaultCenter={props.defaultPosition}>
 			{props.allLocation.map((location, index) => 
 				<Marker 
 					key={location.venue.id}
