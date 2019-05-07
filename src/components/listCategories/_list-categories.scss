@@ -1,7 +1,6 @@
 .list-categories {
-	width: 20%;
-	background-color: $color-primary;
-	
+	max-width: 250px;
+
 	&__title {
 		border-bottom: 1px solid transparent;
 		padding: 3vh 20px;
