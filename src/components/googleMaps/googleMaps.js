@@ -25,7 +25,7 @@ const GoogleMaps = withScriptjs(withGoogleMap((props) => {
 					{ ( showInfoIndex === index ) && ( 
 						<InfoWindow key={location.venue.id} >
 							<div className="infoWindow">
-								<h2 className="infoWindow__title">{location.venue.name}</h2>
+								<h2 className0="infoWindow__title">{location.venue.name}</h2>
 
 								<div className="infoWindow__address">
 									<p><strong>Rua:</strong> {validationAddress(location.venue.location.address)}</p>

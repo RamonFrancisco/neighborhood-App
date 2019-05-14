@@ -1,20 +1,36 @@
-.list-categories {
-	max-width: 250px;
-
+.find-venue {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	
+	.form-group {
+		height: 10vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+		input {
+			background: transparent;
+			color: $color-second;
+			padding: 10px;
+			border: 1px solid $color-second;
+			border-radius: 10px;
+		}
+	}	
+	
 	&__title {
 		border-bottom: 1px solid transparent;
+		font-size: 1.3rem;
 		padding: 3vh 20px;
 		color: $color-second;
 		font-weight: lighter;
 		text-transform: uppercase;
 	}
-	
-	&__list {
-		display: flex;
-		flex-direction: column;
+	.list-venue {
 		height: 30vh;
 		overflow: auto;
-		
+	
+	
 		&__option {
 			text-align: left;
 			background-color: transparent;
@@ -23,7 +39,7 @@
 			padding: 10px 20px;
 			border: 0;
 			transition: all .2s linear;
-
+	
 			&:hover {
 				background-color: rgba($color-second, .7);
 				color: rgba($color-primary, 1) ;

@@ -4,20 +4,21 @@ const CLIENT_SECRET = `client_secret=${process.env.REACT_APP_FOURSQUARE_SECRET_I
 const DEFAULT_PARAMETERS = 'v=20180323'
 const NEAR = '&near=São Paulo';
 
-
-export const getVenue = id => 
-fetch(`${BASE_URL}categoryId=${id}&${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)
-	.then(res => res.json())
-	.then(data => data.response.groups[0])
-	.catch(err => console.error(err))
+//Get avenue for id 
+export const getVenue = id =>
+	fetch(`${BASE_URL}categoryId=${id}&${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)
+		.then(res => res.json())
+		.then(data => data.response.groups[0])
+		.catch(err => console.error(err))
 
 // export const search = (query) => 
 // fetch(`${BASE_URL}/categories?${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}`)
 // 	.then(res => res.json())
 // 	.then(data => console.log('ids', data.response))
 
-export const getCategories = () => 
-fetch(`https://api.foursquare.com/v2/venues/categories?${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)
-	.then(res => res.json())
-	.then(data => data.response)
-	.catch(err => console.error(err))
+//Get categories 
+export const getCategories = () =>
+	fetch(`https://api.foursquare.com/v2/venues/categories?${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)
+		.then(res => res.json())
+		.then(data => data.response)
+		.catch(err => console.error(err))
