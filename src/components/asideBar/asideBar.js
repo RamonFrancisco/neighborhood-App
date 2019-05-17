@@ -1,12 +1,15 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 //Import components
 import ListCategories from '../listCategories/listCategories';
 import Search from '../search/search';
 
-const AsideBar = ({findCategories, categoryName, filterLocations, categories, allLocation, filteredLocation}) => {
+const AsideBar = ({findCategories, categoryName, filterLocations, categories, allLocation, filteredLocation, closeMenu}) => {
 	return (
 		<aside className="aside-bar">
+			<FontAwesomeIcon onClick={closeMenu} className="header__icon" icon="times" />
 			<Search allLocation={allLocation}
 				filteredLocation={filteredLocation} 
 				filterLocations={filterLocations} />

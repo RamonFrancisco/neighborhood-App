@@ -13,6 +13,14 @@ const Search = ({allLocation, filteredLocation, filterLocations}) => {
 			filterLocations('');
 		}
 	}, [debounceSearchTerm])
+	
+	const focusInfo = id => {
+    	setTimeout(() => {
+    		let infoWindow = document.querySelectorAll('.infoWindow');
+    		// infoWindow.focus();	
+    		console.log(infoWindow)
+    	}, 2000)
+	};
 
 	return (
 		<>
@@ -22,8 +30,8 @@ const Search = ({allLocation, filteredLocation, filterLocations}) => {
 				</div>
 				<h2 className="find-venue__title">Lugares proximos</h2>
 				<div className="list-venue">
-					{debounceSearchTerm && filteredLocation.map(location => <p className="list-venue__option">{location.venue.name}</p>)}
-					{!debounceSearchTerm && allLocation.map(location => <p className="list-venue__option">{location.venue.name}</p>)}
+					{debounceSearchTerm && filteredLocation.map(location => <button onClick={focusInfo(location.venue.id)} key={location.venue.id} className="list-venue__option">{location.venue.name}</button>)}
+					{!debounceSearchTerm && allLocation.map(location => <button onClick={focusInfo(location.venue.id)} key={location.venue.id} className="list-venue__option">{location.venue.name}</button>)}
 					
 				</div>
 			</div>

@@ -2,6 +2,11 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	margin-top: 2.6rem;
+	
+	@media (min-width: 720px) {
+		margin-top: 0;
+	}
 	
 	.form-group {
 		height: 10vh;
@@ -39,6 +44,7 @@
 			padding: 10px 20px;
 			border: 0;
 			transition: all .2s linear;
+			width: 100%;
 	
 			&:hover {
 				background-color: rgba($color-second, .7);

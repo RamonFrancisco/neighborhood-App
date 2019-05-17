@@ -7,6 +7,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: relative;
 	
 	&__title {
 		text-transform: uppercase;
@@ -14,5 +15,14 @@
 		font-size: 1.6em;
 		text-align: center;
 		color: $color-second;
+	}
+	
+	&__icon {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		font-size: 2rem;
+		color: $color-second;
+		font-weight: lighter;
 	}
 }
