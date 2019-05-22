@@ -50,8 +50,22 @@
 
 .content {
 	width: 100%;
+}
+
+.error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	
+	img {
+		margin: 0 auto;
+		max-width: 100%;
+		height: auto;
+	}
 	
 }
+
 
 @keyframes spin {
 	0% { transform: rotate(0deg); }

@@ -8,6 +8,8 @@ import { faStroopwafel, faSearchLocation, faMapMarker, faBars, faTimes } from '@
 import GoogleMaps from './components/googleMaps/googleMaps';
 import Header from './components/header/Header';
 import AsideBar from './components/asideBar/asideBar'
+import imageError from './images/Error_Image.gif';
+
 
 library.add(faStroopwafel, faSearchLocation, faMapMarker, faBars, faTimes)
 
@@ -19,8 +21,15 @@ const App = () => {
 	const [categorias, setCategorias] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [defaultPosition, setDefaultPosition] = useState({ lat: -23.533773, lng: -46.625290 })
+	const [markerActiveId, setMarkerActiveId] = useState(null);
+	const [isOpen, setIsOpen] = useState(false);
+	const [mapError, setMapError] = useState(false);
 
-
+	const openInfoWindow = marker => {
+		setMarkerActiveId(marker);
+		setIsOpen(true);
+		toogleMenu();
+	}
 
 	const findvenuaByCategory = (id, categoria) => {
 		setIsLoading(true)
@@ -29,14 +38,19 @@ const App = () => {
 				setAllLocation(res.items)
 				setCategoria(categoria)
 				setIsLoading(false)
+				setFilteredLocations(res.items)
 			})
+			.catch(err => setMapError(true));
 		}
 		
 		//Get categories 
 		useEffect( () => {
 			MapsAPI.getCategories()
-			.then(res => setCategorias(res.categories) )
+			.then(res => setCategorias(res.categories))
+			.catch(err => setMapError(true));
 	}, []);
+	
+	
 	
 	const toogleMenu = () => {
 		const menu = document.querySelector('.aside-bar');
@@ -61,12 +75,7 @@ const App = () => {
 	};
 	
 	
-	useEffect(() => {
-		
-		//Get geolocation
-		// if (navigator.geolocation) 
-		// 	navigator.geolocation.getCurrentPosition( position => setDefaultPosition(position) )
-		
+	useEffect(() => {		
 		
 		MapsAPI.getVenue('4d4b7105d754a06374d81259')
 		.then(res => {
@@ -74,30 +83,48 @@ const App = () => {
 			setCategoria(categoria)
 			setFilteredLocations(res.items);
 		})
+		.catch(err => setMapError(true));
 	}, [])
 	
 	return (
-		<main className={isLoading ? 'main loading' : 'main'}>
-			<AsideBar 
-				closeMenu={toogleMenu}
-				findCategories={findvenuaByCategory}
-				filterLocations={filterLocations}
-				categoryName={categoria}
-				categories={categorias} 
-				allLocation={allLocation}
-				filteredLocation={filteredLocation}/>
-			<section className='content'>
-				<Header title="Vilinha" activeMenu={toogleMenu} />
-				<GoogleMaps 
-					defaultPosition={defaultPosition}
-					allLocation={filteredLocation}
-					googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS}&v=3`}
-					loadingElement={<div style={{ height: `100%` }} />}
-					containerElement={<div style={{ height: `90vh` }} />}
-					mapElement={<div style={{ height: `100%` }} />}
-				/>
-			</section>
-		</main>
+		<>
+		{ mapError && (
+			<div className="error">
+				<img src={imageError} alt="erro 500" />
+			</div>)
+		}
+		
+		{!mapError && (
+		
+			<main className={isLoading ? 'main loading' : 'main'}>
+				<AsideBar
+					openInfoWindow={openInfoWindow}
+					markerActive={markerActiveId}
+					closeMenu={toogleMenu}
+					findCategories={findvenuaByCategory}
+					filterLocations={filterLocations}
+					categoryName={categoria}
+					categories={categorias} 
+					allLocation={allLocation}
+					filteredLocation={filteredLocation}/>
+				<section className='content'>
+					<Header title="Vilinha" activeMenu={toogleMenu} />
+					<GoogleMaps 
+						isOpen={isOpen}
+						openInfoWindow={openInfoWindow}
+						markerActive={markerActiveId}
+						defaultPosition={defaultPosition}
+						allLocation={filteredLocation}
+						googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS}&v=3`}
+						loadingElement={<div style={{ height: `100%` }} />}
+						containerElement={<div style={{ height: `90vh` }} />}
+						mapElement={<div style={{ height: `100%` }} />}
+					/>
+				</section>
+			</main>
+		)} 
+		
+		</>
 	);
 }
 	

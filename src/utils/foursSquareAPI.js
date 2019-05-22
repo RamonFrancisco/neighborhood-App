@@ -11,11 +11,6 @@ export const getVenue = id =>
 		.then(data => data.response.groups[0])
 		.catch(err => console.error(err))
 
-// export const search = (query) => 
-// fetch(`${BASE_URL}/categories?${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}`)
-// 	.then(res => res.json())
-// 	.then(data => console.log('ids', data.response))
-
 //Get categories 
 export const getCategories = () =>
 	fetch(`https://api.foursquare.com/v2/venues/categories?${CLIENT_ID}&${CLIENT_SECRET}&${DEFAULT_PARAMETERS}&${NEAR}`)

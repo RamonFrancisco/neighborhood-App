@@ -8,13 +8,16 @@
 	position: fixed;
 	transition: transform .4s linear;
 	
+	
+	
 	&.-active {
 		transform: translateX(0);
 		z-index: 10;
 	}
 	
 	@media (min-width: 720px) {
-		position: relative
+		position: relative;
+		transform: translateX(0)
 	}
 	
 	.icon {
@@ -22,5 +25,10 @@
 		font-size: 2rem;
 		color: $color-second;
 		font-weight: lighter;
+		
+		@media (min-width: 768px) {
+			display: none;	
+		}
 	}
+	
 }

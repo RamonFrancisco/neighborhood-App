@@ -3,7 +3,7 @@ import React from 'react';
 const ListCategories = ({findCategories, categoryName, categories}) => {
 
 	return(
-		<aside className="list-categories">
+		<div className="list-categories">
 			<h2 className="list-categories__title">Categorias</h2>
 			<div className="list-categories__list">
 				{categories.map(categorie => {
@@ -14,7 +14,7 @@ const ListCategories = ({findCategories, categoryName, categories}) => {
 						onClick={ () => {findCategories(categorie.id, categorie.name)}} key={categorie.id} >{categorie.name}</button>
 				})}
 			</div>
-		</aside>
+		</div>
 	);
 }
 
